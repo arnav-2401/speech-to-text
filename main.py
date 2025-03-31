@@ -1,17 +1,20 @@
-from transcribe import transcribe_audio
+import subprocess
+
+def record_audio():
+    try:
+        subprocess.run(["./record_alsa"], check=True)
+    except subprocess.CalledProcessError as e:
+        print(f"Recording failed: {e}")
 
 def main():
-    input_audio = "test.raw"  # Or any other input file
-    output_text = "output.txt"
-    model = "small"  # Options: tiny, base, small, medium, large
-    threads = 4
+    record_audio()
+    print("Now transcribing...")
 
-    try:
-        text = transcribe_audio(input_audio, output_text, model, threads)
-        print("Transcription completed:\n")
-        print(text)
-    except Exception as e:
-        print(f"Error: {e}")
+    from transcribe import transcribe_audio
+    transcription = transcribe_audio("test.raw", "output.txt", model="small", threads=4)
+
+    print("Transcription complete:\n")
+    print(transcription)
 
 if __name__ == "__main__":
     main()
