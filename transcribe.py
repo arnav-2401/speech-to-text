@@ -4,12 +4,22 @@ import os
 def transcribe_audio(input_audio, output_text="transcription.txt", model="small", threads=4):
    
  # Ensure whisper.cpp is built
-    if not os.path.exists("whisper.cpp/main"):
+    if not os.path.exists("whisper.cpp/build/bin/whisper-cli"):
         raise FileNotFoundError("whisper.cpp not found. Please clone and build it first.")
 
     # Convert audio to mono, 16kHz WAV (if not already)
     temp_audio = "converted.wav"
-    subprocess.run(["ffmpeg", "-y", "-i", input_audio, "-ac", "1", "-ar", "16000", temp_audio], check=True)
+    subprocess.run([
+    "ffmpeg", "-y",
+    "-f", "s16le",         # Format: signed 16-bit little-endian
+    "-ar", "44100",        # Original sample rate
+    "-ac", "1",            # Mono audio
+    "-i", input_audio,     # Input file
+    "-ar", "16000",        # Resample to 16kHz
+    "-ac", "1",            # Output as mono
+    temp_audio
+], check=True)
+
 
     # Run whisper.cpp transcription
     model_path = f"whisper.cpp/models/ggml-{model}.bin"
@@ -17,7 +27,7 @@ def transcribe_audio(input_audio, output_text="transcription.txt", model="small"
         raise FileNotFoundError(f"Model file {model_path} not found. Please download it.")
 
     result = subprocess.run(
-        ["whisper.cpp/main", "-m", model_path, "-f", temp_audio, "-t", str(threads)],
+        ["whisper.cpp/build/bin/whisper-cli", "-m", model_path, "-f", temp_audio, "-t", str(threads)],
         capture_output=True, text=True
     )
 
