@@ -1,24 +1,27 @@
 import subprocess
 import os
 
-def transcribe_audio(input_audio, output_text="transcription.txt", model="small", threads=4):
+def transcribe_audio(input_audio, output_text="transcription.txt", model="small", threads=4, convert=True):
    
  # Ensure whisper.cpp is built
     if not os.path.exists("whisper.cpp/build/bin/whisper-cli"):
         raise FileNotFoundError("whisper.cpp not found. Please clone and build it first.")
 
     # Convert audio to mono, 16kHz WAV (if not already)
-    temp_audio = "converted.wav"
-    subprocess.run([
-    "ffmpeg", "-y",
-    "-f", "s16le",         # Format: signed 16-bit little-endian
-    "-ar", "44100",        # Original sample rate
-    "-ac", "1",            # Mono audio
-    "-i", input_audio,     # Input file
-    "-ar", "16000",        # Resample to 16kHz
-    "-ac", "1",            # Output as mono
-    temp_audio
-], check=True)
+    if (convert):
+        temp_audio = "converted.wav"
+        subprocess.run([
+        "ffmpeg", "-y",
+        "-f", "s16le",         # Format: signed 16-bit little-endian
+        "-ar", "44100",        # Original sample rate
+        "-ac", "1",            # Mono audio
+        "-i", input_audio,     # Input file
+        "-ar", "16000",        # Resample to 16kHz
+        "-ac", "1",            # Output as mono
+        temp_audio
+    ], check=True)
+    else:
+        temp_audio = input_audio
 
 
     # Run whisper.cpp transcription
