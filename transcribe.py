@@ -33,7 +33,6 @@ def transcribe_audio(input_audio, output_text="transcription.txt", model="small"
         ["whisper.cpp/build/bin/whisper-cli", "-m", model_path, "-f", temp_audio, "-t", str(threads)],
         capture_output=True, text=True
     )
-
     # Extract and save the transcription
     transcription = result.stdout.strip()
     with open(output_text, "w") as f:
