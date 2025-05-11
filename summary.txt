@@ -1,0 +1,19 @@
+**Summary:**
+
+This lecture covers the basics of Analysis of Variance (ANOVA) in statistics. It starts by defining the null and alternative hypotheses for comparing group means and introduces the concept of ANOVA as a test of the variance between groups and within groups. The lecture then explains how to calculate the F statistic, a key component of ANOVA, and how it can be used to determine if there are significant differences between group means. 
+
+The lecture also demonstrates how ANOVA works using an applet, showing the effect of changing sample size and variability on the F statistic and p-value. 
+
+Overall, the lecture provides a foundational understanding of ANOVA for students studying statistics.
+
+**Key Concepts:**
+
+* **Null and Alternative Hypotheses:** The foundational concepts for hypothesis testing.
+* **ANOVA Model:**  The model used to analyze data and test for group differences.
+* **F statistic:**  A key component of ANOVA, measuring the variation between groups.
+* **P-value:** A measure of the probability of observing the data under the null hypothesis.
+* **Degrees of Freedom:**  Factors related to sample size and group size. 
+* **Central Limit Theorem:** A theorem in statistics, relevant to the calculation of variance in ANOVA.
+
+
+**Note:** The provided lecture is a transcript of a lecture, not a complete written text. Further information about the lecture can be found in the transcript and any accompanying slides or notes.

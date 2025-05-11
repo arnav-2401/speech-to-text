@@ -30,7 +30,7 @@ def transcribe_audio(input_audio, output_text="transcription.txt", model="small"
         raise FileNotFoundError(f"Model file {model_path} not found. Please download it.")
 
     result = subprocess.run(
-        ["whisper.cpp/build/bin/whisper-cli", "-m", model_path, "-f", temp_audio, "-t", str(threads)],
+        ["whisper.cpp/build/bin/whisper-cli", "-m", model_path, "-f", temp_audio, "-t", str(threads), "-nt"],
         capture_output=True, text=True
     )
     # Extract and save the transcription
