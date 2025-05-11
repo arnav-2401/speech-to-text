@@ -1,4 +1,5 @@
 import subprocess
+import os
 
 def record_audio():
     try:
@@ -7,12 +8,18 @@ def record_audio():
         print(f"Recording failed: {e}")
 
 def main():
+    filename = input("Enter a name for the transcribed text file: ").strip()
+    if not filename:
+        print("No filename provided. Using default 'output.txt'.")
+        filename = "output"
+
     record_audio()
     print("Now transcribing...")
 
     from transcribe import transcribe_audio
-    transcription = transcribe_audio("test.raw", "output.txt", model="small", threads=4)
-
+    output_path = os.path.join("transcriptions", f"{filename}.txt")
+    transcription = transcribe_audio("test.raw", output_path, model="small", threads=4)
+    
     print("Transcription complete:\n")
     print(transcription)
 

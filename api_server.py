@@ -21,7 +21,7 @@ async def transcribe(file: UploadFile = File(...)):
         # 3) transcribe  – use convert=True so WAV/MP3/AAC all get down‑sampled
         text = transcribe_audio(
             tmp_path,
-            output_text="ignored.txt",   # side‑file not needed for API use‑case
+            output_text="transcriptions/ignored.txt",   # side‑file not needed for API use‑case
             model="small",
             threads=4,
             convert=False,               # <-- KEEP TRUE so every format is normalised

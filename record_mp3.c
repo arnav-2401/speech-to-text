@@ -4,11 +4,11 @@
 #include <unistd.h>
 #include <termios.h>
 
-#define PCM_DEVICE "hw:0,0"
+#define PCM_DEVICE "hw:2,0"
 #define SAMPLE_RATE 44100
 #define CHANNELS 1
 #define FRAME_SIZE (CHANNELS * 2) // 16-bit audio = 2 bytes per frame
-#define INITIAL_BUFFER_SIZE 4096  // Start small, but expand dynamically if needed
+#define INITIAL_BUFFER_SIZE 4096	// Start small, but expand dynamically if needed
 
 // Function to set terminal to non-blocking mode
 void set_nonblocking_mode(int enable)
