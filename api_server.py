@@ -1,4 +1,7 @@
 # api_server.py
+from startup import startup
+startup()
+from summary import summarize_text
 import os, shutil, tempfile, mimetypes
 from fastapi import FastAPI, File, UploadFile, HTTPException
 from transcribe import transcribe_audio
@@ -26,7 +29,8 @@ async def transcribe(file: UploadFile = File(...)):
             threads=4,
             convert=False,               # <-- KEEP TRUE so every format is normalised
         )
+        text = summarize_text(text)
     finally:
         os.remove(tmp_path)
 
-    return {"transcription": text}
+    return {"summary": text}
