@@ -33,6 +33,14 @@ sudo apt-get update
 sudo apt-get install libasound2-dev ffmpeg python3-pip
 ```
 
+2. **Install Python Packages**
+
+```bash
+python3 -m venv venv
+source venv/bin/activate
+pip install -r requirements.txt
+```
+
 2. **Building whisper.cpp**
 
 ```bash
@@ -82,5 +90,5 @@ uvicorn api_server:app --host 0.0.0.0 --port 8000
 
 ### Mhark
 
-- Worked on summary functionality, experimented with different models and llama_cpp
+- Worked on summary functionality, experimented with different models
 - Worked on startup.py, helping seamlessly manage venvs
