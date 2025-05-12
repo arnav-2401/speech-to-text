@@ -82,5 +82,5 @@ uvicorn api_server:app --host 0.0.0.0 --port 8000
 
 ### Mhark
 
-- Worked on summary functionality, experimented with different models
+- Worked on summary functionality, experimented with different models and llama_cpp
 - Worked on startup.py, helping seamlessly manage venvs
