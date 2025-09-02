@@ -77,18 +77,15 @@ uvicorn api_server:app --host 0.0.0.0 --port 8000
 
 ## Contributions
 
-### Advait
-
-- Implemented recording functionality using ALSA
-- Developed CLI interface for recording and transcription
-- Worked on the FastAPI server for summary and transcription
-
 ### Arnav
-
+- Developed CLI interface for recording and transcription
 - Implemented transcription functionality using whisper.cpp
 - Worked on integrating everything together in main.py
+  
+### Advait
+- Implemented recording functionality using ALSA
+- Worked on the FastAPI server for summary and transcription
 
 ### Mhark
-
 - Worked on summary functionality, experimented with different models
 - Worked on startup.py, helping seamlessly manage venvs
